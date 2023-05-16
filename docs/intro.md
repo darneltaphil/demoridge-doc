@@ -2,46 +2,36 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# GovtPortal Documentation
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Let's discover **GovtPortal in less than 5 minutes**.
 
-## Getting Started
+## Sneak Peek
 
-Get started by **creating a new site**.
+[Add an intro here]
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## What you'll need
 
-### What you'll need
+### Server
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+When installing XAMPP server, you are recommended to leave the installation parameters as default.
 
-## Generate a new site
+- [XAMPP](https://www.apachefriends.org/download.html) version 8.2.4 or above:
 
-Generate a new Docusaurus site using the **classic template**.
+:::tip My tip
 
-The classic template will automatically be added to your project after you run the command:
+To get **PHP**, **Apache** and **MySql** servers, you can install _**XAMPP**_ or _**WAMP**_, whichever you feel comfortable with .
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+:::
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+### CMS
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+Install Wordpress and activate the [Network Setup](https://wordpress.org/documentation/article/create-a-network/).
 
-## Start your site
+- [Wordpress](https://wordpress.org/download/) version 6.2 or above:
 
-Run the development server:
+### Intergrated Development Environement
 
-```bash
-cd my-website
-npm run start
-```
+You can use any IDE of your choice.
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+- [IDE - VSCode](https://code.visualstudio.com/download) version 1.78 or above:
