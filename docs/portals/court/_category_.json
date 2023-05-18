@@ -1,0 +1,8 @@
+{
+  "label": "Court",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "not empty"
+  }
+}
