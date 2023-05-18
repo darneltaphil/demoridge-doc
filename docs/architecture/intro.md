@@ -1,12 +1,13 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 # High Level Architecture
 
-Can I put something here
-:::info My tip
+Space for intro
 
-Install the latest versions of **PHP**, **Apache** and **MySql** servers.
+:::info About the Architecture
+
+We will provide both network architecture and software architecture
 
 :::
