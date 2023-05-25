@@ -25,7 +25,7 @@ To get **PHP**, **Apache** and **MySql** servers, you can install _**XAMPP**_ or
 #### Steps
 
 1. Create a database : You can any name for your database.
-   But we suggest `govtportal` as it this name will be used throughout the documentation.
+   But we suggest `govtportal` as this database name will be used throughout the documentation.
 
    :::info About the database
    Keep username **root** and a password **""**.

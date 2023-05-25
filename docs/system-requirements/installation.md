@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# GovtPortal Installation
+# GovtPortal Clone
 
 ## Github Code
 
@@ -12,7 +12,7 @@ Start this section only after you have set up your development environment, inst
 
 ### Create Theme
 
-1. Create a folder named `8.2` within your wordpress foder structure:
+1. Create a folder named `8.2` within your wordpress folder structure:
    `8.2` also represents the current stable version of hte application.
 
    ```

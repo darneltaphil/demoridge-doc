@@ -8,10 +8,10 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "GovtPortal Documentation",
   tagline: "",
-  favicon: "img/favicon.ico",
+  //favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://your-docusaurus-test-site.com",
+  url: "http://staging.ipwebsolutions.com/",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
@@ -66,8 +66,9 @@ const config = {
       navbar: {
         title: "Home",
         logo: {
-          alt: "My Site Logo",
+          alt: "Logo",
           src: "img/nav-logo.png",
+          srcDark: "img/nav-logo.png",
         },
         items: [
           {
@@ -76,12 +77,15 @@ const config = {
             position: "left",
             label: "Docs",
           },
+
           {
             href: "https://demoridge.govtportal.com/",
             label: "GovtPortal Site",
             position: "right",
+            "aria-label": "Demo Portal",
           },
         ],
+        //hideOnScroll: true,
       },
       footer: {
         style: "dark",
@@ -135,6 +139,10 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 5,
       },
     }),
 
