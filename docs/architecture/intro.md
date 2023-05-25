@@ -64,6 +64,8 @@ The portal details from `zoho_products` indicated the name of the form to use.
 
 This is where the payment processing happens. There is a query/response communication between GovtPortal and 3d party / Gateways. The gateway details are also provided by the portal details from `zoho_products`.
 
+All transactions are saved in `trans_all` table.
+
 #### E. **Payment Getways**
 
 Payment Gateway REST APis
