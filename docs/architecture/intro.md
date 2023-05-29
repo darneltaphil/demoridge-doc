@@ -21,7 +21,7 @@ We will provide here only the application's high level architecture
 ### What is going on here?
 
 GovtPortal is installed on a single WordPress installation, running a single database: **govtportal**. <br/>
-This single wordpress multisite installation is used to create and deploy private sector clients, governement agencies and other partners websites.<br />
+This single wordpress multisite installation is used to create and deploy private sector clients, government agencies and other partners websites.<br />
 The children sites will share **themes, admins and plugins (if any)**.
 Each child site represents a website deployed for a client.
 
@@ -35,41 +35,61 @@ A child site has a defined number of portals (based on the services they are goi
 
 #### A. **The database** [`govtportal`](./database)
 
-The database contains all the necessary tables (structure and data). <br />
+The database contains all the necessary tables (structure and data). Let's describe a few key tables seen in the previous image.<br />
 
-**`zoho_products`** table contains the definition of all the portals on the site. the **Zoho Products** are generated on the ZOHO platform, external to GovtPortal application.<br />
+The **`zoho_products`** table contains the definitions of all the portals on the site. The **Zoho Products** are generated on the ZOHO platform, which external to GovtPortal application. This table provides crucial bits of information, such as:
 
-**`sa_fields`** table contains the definition of form fields and type that must be displayes on a particular **sa_form**.<br />
+<ul> 
+<li> The portal's name and ID</li>
+<li> The portal's owner's and Id </li>
+<li> the department </li>
+<li> The Gateway and other online payment details </li>
+</ul>
 
-**`trans_all`** table contains saved transactions. <br />
+:::note Zoho Product details
+We count 104 zoho product details in all.
+:::
+
+The **`sa_fields`** table contains the definition of form fields and types that must be displayed on a particular **sa_form**.<br /> On the platform, users get to fill out different types of forms. This table helps customize the `sa-forms`
+
+The **`trans_all`** table contains saved transactions. <br />
 
 #### B. **The Portals** [(Find More)](../portals/intro)
 
-The `zoho_products` table provides important details for the portals. for instance: _Product Owner, Portal Name, the Gateway, Merchant Details_, etc.
-:::note Zoho Product details
-We count 104 zoho product details in all
-:::
+![](../../static/img/portals.png)
+
+The portals are displayed based on strict preset conditions. For instance, when we take a single portal, one major condition we check is if the portal is a [**Quick Sale**](../portals/intro.md) and can be served with a kiosk. The other condition is to check if the site is accessed by QR-code or via a web browser (in this case online payment and gateway information must be present in the `zoho_products` table).<br />
+Those 2 major conditions also have several ramifications, some of which include:
+
+<ul>
+<li> Integrated portal</li>
+<li> The lobby form and/or an application document attached to the portal.</li>
+</ul> 
+will be detailed in the portal section.
+
+The portal UI buttons appear differently under different conditions.
+We will detail the portal settings in the portal documentation [here](../portals/intro.md).
 
 #### C. **The Forms**
 
-Two (2) types of form are used. **_Ticket search form_** and **_SA Form_**. <br />
-Using a ticket search form means that the portal is Integrated. The platform user must then search for his/her ticket using the ticket number. <br />
-Using the SA Form means the portal is not Itegrated. The platform user fills in additional detials neeted to process the payment.<br />
+Two (2) types of form are used. **_Ticket search form_** and **_SA form_**. <br />
+Using a ticket search form means that the portal is integrated. The platform user must then search for his/her ticket using the ticket number. <br />
+Using the SA Form means the portal is not integrated. The platform user fills in additional details needed to process the payment.<br />
 
-It is important to clarify what `INTEGRATION` means here : If GovtPortal has a dataset of ticket numbers for a specific portal, that portal is integrated.
+It is important to clarify what `INTEGRATION` means here: If GovtPortal has a dataset of ticket numbers for a specific portal, that portal is integrated.
 
 The portal details from `zoho_products` indicated the name of the form to use.
 
-#### D. **Processing Payment**
+#### D. **Processing payment**
 
 This is where the payment processing happens. There is a query/response communication between GovtPortal and 3d party / Gateways. The gateway details are also provided by the portal details from `zoho_products`.
 
 All transactions are saved in `trans_all` table.
 
-#### E. **Payment Getways**
+#### E. **Payment gateways**
 
-Payment Gateway REST APis
+Payment Gateway REST APIs
 
-#### F. **Notifications and Receipt**
+#### F. **Notifications and receipt**
 
 GovtPortal notifies the user of the platform via email or SMS.

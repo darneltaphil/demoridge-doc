@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## Technologies used
 
-```mdx title="List"
+```tips title="List"
 - Programming Language: PHP
 - Database : MySql
 - CMS : Wordpress
