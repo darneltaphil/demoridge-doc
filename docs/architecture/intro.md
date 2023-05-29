@@ -3,6 +3,8 @@ sidebar_position: 1
 toc_min_heading_level: 2
 ---
 
+import Highlight from "./js/Highlight.js"
+
 # High Level Architecture
 
 GovtPortal was developed with Wordpress Multisite. That way, we can create more than one **website** on a single WordPress installation.
@@ -14,7 +16,7 @@ We will provide here only the application's high level architecture
 
 :::
 
-## Main Site
+## Main WordPress
 
 ![](../../static/img/wordpress_multisite.png)
 
@@ -25,7 +27,7 @@ This single wordpress multisite installation is used to create and deploy privat
 The children sites will share **themes, admins and plugins (if any)**.
 Each child site represents a website deployed for a client.
 
-## Child Site
+## Child Website
 
 A child site has a defined number of portals (based on the services they are going offer).
 
@@ -33,7 +35,7 @@ A child site has a defined number of portals (based on the services they are goi
 
 ### What is going on here?
 
-#### A. **The database** [`govtportal`](./database)
+#### The database [`govtportal`](./database)
 
 The database contains all the necessary tables (structure and data). Let's describe a few key tables seen in the previous image.<br />
 
@@ -54,7 +56,7 @@ The **`sa_fields`** table contains the definition of form fields and types that 
 
 The **`trans_all`** table contains saved transactions. <br />
 
-#### B. **The Portals** [(Find More)](../portals/intro)
+#### The Portals [(Find More)](../portals/intro)
 
 ![](../../static/img/portals.png)
 
@@ -68,28 +70,41 @@ Those 2 major conditions also have several ramifications, some of which include:
 will be detailed in the portal section.
 
 The portal UI buttons appear differently under different conditions.
+
+![](../../static/img/buttons.png)
+
 We will detail the portal settings in the portal documentation [here](../portals/intro.md).
 
-#### C. **The Forms**
+#### The Forms
 
-Two (2) types of form are used. **_Ticket search form_** and **_SA form_**. <br />
+Six (6) types of form are used:
+
+<ul>
+<li> Ticket search form</li>
+<li> Kiosk ticket search form</li>
+<li> SA form</li>
+<li> Reserve form</li>
+<li> Search record form</li>
+<li> Document form</li>
+</ul>
+
 Using a ticket search form means that the portal is integrated. The platform user must then search for his/her ticket using the ticket number. <br />
 Using the SA Form means the portal is not integrated. The platform user fills in additional details needed to process the payment.<br />
 
-It is important to clarify what `INTEGRATION` means here: If GovtPortal has a dataset of ticket numbers for a specific portal, that portal is integrated.
+It is important to clarify what `INTEGRATION` means here: if GovtPortal has a dataset of ticket numbers for a specific portal, that portal is integrated.
 
 The portal details from `zoho_products` indicated the name of the form to use.
 
-#### D. **Processing payment**
+#### Processing payment
 
 This is where the payment processing happens. There is a query/response communication between GovtPortal and 3d party / Gateways. The gateway details are also provided by the portal details from `zoho_products`.
 
 All transactions are saved in `trans_all` table.
 
-#### E. **Payment gateways**
+#### Payment gateways
 
 Payment Gateway REST APIs
 
-#### F. **Notifications and receipt**
+#### Notifications and receipt
 
 GovtPortal notifies the user of the platform via email or SMS.
