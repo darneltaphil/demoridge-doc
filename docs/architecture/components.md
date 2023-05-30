@@ -65,21 +65,21 @@ It is important to note that the admin navbar appears with additional buttons.
 <ul>
 <li>
 
-#### Report Page [(read more)](../admin-portal/interface#report)
+#### Report Page [(read more)](../admin-portal/director.md#the-interface)
 
 ![](../../static/img/reportPage.png)
 
 </li>
 <li>
 
-#### Document Report Page [(read more)](../admin-portal/interface#documentreport)
+#### Document Report Page [(read more)](../admin-portal/director.md#the-interface)
 
 ![](../../static/img//documentReport.png)
 
 </li>
 <li>
 
-#### Portal Settings Page [(read more)](../admin-portal/settings.md)
+#### Portal Settings Page [(read more)](../admin-portal/settings/settings.md)
 
 ![](../../static/img/settingsPage.png)
 
