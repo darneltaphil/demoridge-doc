@@ -29,7 +29,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "en",
-    locales: ["en", "fr"],
+    locales: ["en"],
   },
 
   presets: [
@@ -97,10 +97,10 @@ const config = {
                 label: "Docs",
                 to: "/docs/intro",
               },
-              {
-                label: "Privacy Policy",
-                to: "/docs/pricacy",
-              },
+              // {
+              //   label: "Privacy Policy",
+              //   to: "/docs/pricacy",
+              // },
             ],
           },
           // {
@@ -139,6 +139,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+        additionalLanguages: ["powershell", "php", "java"],
       },
       tableOfContents: {
         minHeadingLevel: 2,

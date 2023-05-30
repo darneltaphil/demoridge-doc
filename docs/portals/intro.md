@@ -2,11 +2,11 @@
 sidebar_position: 1
 ---
 
-import Hightlight from "../architecture/js/Highlight.js"
+import Highlight from "@site/src/components/Highlight.js"
 
 # What is a Portal?
 
-A portal is a single component of GovtPortal representing a single service.
+A portal is component which represent a single service.
 On the interface, it looks like this :
 
 ![](../../static/files/standalone.png)
@@ -144,5 +144,210 @@ The **`zoho_products`** table in the database defines the portals. Details conta
 ## Display of Portals
 
 ### Logic Diagram
+
+#### Main
+
+The portals are displayed based on strict preset conditions.
+The following flow diagram describes the main functional logic which guides the display of the portals.
+Find the code in `Clean_onlinehome.php` file.
+
+![](../../static/img/portalDisplayFlow.png)
+
+To start, the following code sets the **`entity`** variable and fetches the portal's details to set other needed variables
+
+```bash title="Fetch Portal Details"
+$entity = get_option('entity');
+$result = $wpdb->get_results("SELECT DISTINCT * FROM  zoho_products WHERE(Entity='{$entity}')", ARRAY_A);
+$form_index = 0;
+$integrated_count = 0;
+$is_exist_portal = false;
+```
+
+other variables are also extracted form the database query **`$result`** from the previous code
+
+```php title="Other Variables"
+    $onlinePayment = $row['OnlinePayment'];  //true or false
+    $portal_name = $row['portal_name']; // string value
+    $portal_id = $row['Portal_Id']; // string value: gpXXXX
+    $vp = $row['Voice_Portal'];  //Voice portal Number
+    $var_partner = $row['Var_Partner'];
+    $dept_type = $row['department_type'];  // department
+    $gateway = $row['Gateway'];  //String value : [USA EPay, MX]
+    $integrated = $row['integrated']; //true or false
+```
+
+then
+
+```php title="CONDITION 1"
+//function gp_is_kiosk_portal() is defined in the function.php
+function gp_is_kiosk_portal($portal_id)
+{
+    global $is_kiosk;
+    if (!$is_kiosk) {
+        return true;
+    }
+    global $wpdb;
+    return $wpdb->get_var("SELECT pb_kiosk FROM portal_boolean WHERE pb_portal_id = '$portal_id'") === 'yes';
+}
+
+//Check the Portal name
+if(substr($portal_name, -10) != 'Quick Sale' && gp_is_kiosk_portal($portal_id)){
+
+    // The block of code that displays the portals goes here.
+
+}
+```
+
+This previous lines check if the last **10** letters of the portal's name is not **`Quick sale`**, and if the portal is served via a kiosk.<br />
+If the condition is not satisfied, the portal is not displayed. <br/>
+If the condition is verified then we go ahead and set some key variables
+
+:::tip $action variable
+
+The **$action** variable keeps the **_slug_** or **_uri_** of the destination page when the user clicks on the portal button.
+
+:::
+
+```php title="Setting Variables"
+$action = home_url('/sa-form/');
+    if ($is_kiosk) {
+        $action = home_url('/kiosk-sa-form/');
+    }
+    if ($integrated == 'true') {
+        if ($is_kiosk) {
+            $action = home_url('/kiosk-ticket-number-search/');
+        } else {
+            $action = home_url('/ticket-number-search/');
+        }
+    }
+    $lobby_id = $wpdb->get_var("SELECT pb_lobby_form_id FROM portal_boolean WHERE pb_entity = '$entity' AND pb_portal_id = '$portal_id' AND pb_lobby = 'yes'");
+    $lobby_only = $wpdb->get_var("SELECT pb_lobby_only FROM portal_boolean WHERE pb_entity = '$entity' AND pb_portal_id = '$portal_id'") == 'yes';
+    if ($lobby_id) {
+        $is_endocket = ($wpdb->get_var("SELECT lobby_type FROM lobby_forms WHERE id = $lobby_id")) == 'endocket';
+        $is_alagov = ($wpdb->get_var("SELECT lobby_type FROM lobby_forms WHERE id = $lobby_id")) == 'alagov';
+    } else {
+        $is_endocket = false;
+        $is_alagov = false;
+    }
+
+```
+
+#### 'A' Diagram
+
+This diagram describe how a prtal is displayed when the site has `is_qrcode` set to `true`.
+
+<ol>
+<li>
+
+##### Condition 1 <br />
+
+```php
+<?php if ($is_endocket || $is_alagov) { ?>
+    <a href="<?php echo home_url('/reserve-form/?portal_id=') . $portal_id . ($is_kiosk ? '&is_kiosk' : ''); ?>" class="btn btn-success kiosk-big-btn">Defendant Check-in</a>
+    <hr>
+    <h4>Attorney and Other Persons Please Check</h4>
+    <a href="<?php echo home_url('/lobby-attorney/?') . ($is_endocket ? 'endocket' : 'alagov'), ($is_kiosk ? '&is_kiosk' : ''); ?>" class="btn btn-danger kiosk-big-btn">Non Defendant Check-in</a>
+<?php } else { ?>
+    <a href="<?php echo home_url('/reserve-form/?portal_id=') . $portal_id . ($is_kiosk ? '&is_kiosk' : ''); ?>" class="btn btn-success kiosk-big-btn">Check-in</a>
+<?php } ?>
+```
+
+ </li>
+</ol>
+
+![](../../static/img/aDiagram.png)
+
+<Highlight bg="#5CB85C" color="#fff">Defendent Check-in</Highlight>:
+
+has **`/reserve-form/?portal_id=gpXXXX`** as he href of the anchor
+<Highlight bg="#D9534F" color="#fff">Non Defendent Check-in</Highlight>:
+
+has **`/lobby-attorney/?[endocked || alagov]`** as he href of the anchor
+
+#### 'B' Diagram
+
+This diagram describe how a prtal is displayed when the site has `is_kiosk` set to `true`.<br />
+The three conditions on the image below are independent from each other, so if any combination of the 3 condition is verified, their clause will reflect on how the buttons are shown.
+![](../../static/img/bDiagram.png)
+
+<Highlight bg="#5CB85C" color="#fff">Defendent Check-in</Highlight>:
+
+has **`/reserve-form/?portal_id=gpXXXX`** as he href of the anchor
+<Highlight bg="#D9534F" color="#fff">Non Defendent Check-in</Highlight>:
+
+has **`/lobby-attorney/?[endocked || alagov]`** as he href of the anchor
+<Highlight bg="#5CB85C" color="#fff">Document</Highlight>:
+
+has **`/reserve-form/?portal_id=gpXXXX`** as he href of the anchor
+<Highlight bg="#5CB85C" color="#fff">Application</Highlight>:
+
+has **`/reserve-form/?portal_id=gpXXXX`** as he href of the anchor
+
+<ol>
+<li>
+
+##### Condition 1 <br />
+
+```php title="Similar to the Condition 1 in A diagram, but wrapped in another condition"
+ if ($lobby_id) {
+    if ($is_endocket || $is_alagov) {
+    //
+    } else {
+    //
+    }
+ }
+```
+
+ </li>
+ <li>
+
+##### Condition 2 <br />
+
+```php title="If $gateway is set to true"
+if ($gateway) {
+    <form method="post" id="portal_form_<?php echo $form_index++; ?>" action="<?php echo $action; ?>">
+        <input type="hidden" name="portal_id" value="<?php echo $portal_id; ?>">
+        <input value="<?php echo getOption('payment_clerk_button_' . $portal_id, 'Continue'); ?>" class="btn btn-primary kiosk-big-btn" type="submit">
+    </form>
+}
+```
+
+ </li>
+ <li>
+
+##### Condition 3 <br />
+
+```php title="If the portal has an application document apptached"
+if (getOption('application_document_' . $portal_id, false)) {
+    $form_id = getOption('application_document_form_' . $portal_id, '');
+    $form = $wpdb->get_row($wpdb->prepare("SELECT * FROM gp_templates WHERE id = %d", $form_id), ARRAY_A);
+    if ($form) {
+        if ($form['form_type'] == 'Document') {
+            echo '<div class="form-group"><a href="' . home_url('/search-record/?is_kiosk&portal_id=' . $portal_id) . '" class="btn btn-success" style="padding: 10px 15px;font-size: 24px;">', getOption('application_document_clerk_button_' . $portal_id, 'Document'), '</a></div>';
+        } else {
+            echo '<div class="form-group"><a href="' . home_url('/document-form/?is_kiosk&portal_id=' . $portal_id) . '" class="btn btn-success" style="padding: 10px 15px;font-size: 24px;">', getOption('application_document_clerk_button_' . $portal_id, 'Application'), '</a></div>';
+        }
+    }
+}
+```
+
+ </li>
+ <li>
+
+###### Condition 3.1 <br />
+
+```php title="If the portal has an application document apptached"
+
+        if ($form['form_type'] == 'Document') {
+            echo '<div class="form-group"><a href="' . home_url('/search-record/?is_kiosk&portal_id=' . $portal_id) . '" class="btn btn-success" style="padding: 10px 15px;font-size: 24px;">', getOption('application_document_clerk_button_' . $portal_id, 'Document'), '</a></div>';
+        } else {
+            echo '<div class="form-group"><a href="' . home_url('/document-form/?is_kiosk&portal_id=' . $portal_id) . '" class="btn btn-success" style="padding: 10px 15px;font-size: 24px;">', getOption('application_document_clerk_button_' . $portal_id, 'Application'), '</a></div>';
+        }
+```
+
+ </li>
+</ol>
+
+#### 'C' Diagram
 
 ### Code Snippets

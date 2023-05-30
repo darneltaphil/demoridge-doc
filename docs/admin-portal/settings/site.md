@@ -2,10 +2,10 @@
 sidebar_position: 1
 ---
 
-# What you should know
+# Site Settings
 
 The Super World
 
 :::info About the Admin
-The clerk and director roles are discussed here
+
 :::

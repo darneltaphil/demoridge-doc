@@ -3,12 +3,13 @@ sidebar_position: 1
 toc_min_heading_level: 2
 ---
 
-import Highlight from "./js/Highlight.js"
+import Highlight from "@site/src/components/Highlight.js"
 
 # High Level Architecture
 
 GovtPortal was developed with Wordpress Multisite. That way, we can create more than one **website** on a single WordPress installation.
-In our context, a **website** represent [a town or city] ...(clarify this with Lin)
+In our context, a **website** represents a town or state where GovtPortal LLc is providing its service. <br/>
+As shown on the image below, a child website can is deployed for Atlanta, Decatur and Doraville for instance.
 
 :::info About the Architecture
 
@@ -29,8 +30,11 @@ Each child site represents a website deployed for a client.
 
 ## Child Website
 
-A child site has a defined number of portals (based on the services they are going offer).
+A child site has a defined number of portals (based on the services the site is going offer). The site can be accessed via **WEB** or via **KIOSK**. A clerk or a director, assigned that site can log in. the director has the administrative power and permission to set he site's parameters. <br/>
 
+:::success
+All the data related to a single site are identified in the database by its `entity` name
+:::
 ![](../../static/img/child_site.png)
 
 ### What is going on here?
@@ -48,7 +52,7 @@ The **`zoho_products`** table contains the definitions of all the portals on the
 <li> The Gateway and other online payment details </li>
 </ul>
 
-:::note Zoho Product details
+:::info Zoho Product details
 We count 104 zoho product details in all.
 :::
 
@@ -60,7 +64,7 @@ The **`trans_all`** table contains saved transactions. <br />
 
 ![](../../static/img/portals.png)
 
-The portals are displayed based on strict preset conditions. For instance, when we take a single portal, one major condition we check is if the portal is a [**Quick Sale**](../portals/intro.md) and can be served with a kiosk. The other condition is to check if the site is accessed by QR-code or via a web browser (in this case online payment and gateway information must be present in the `zoho_products` table).<br />
+The portals are displayed based on strict preset conditions. For instance, when we take a single portal, one major condition we check is if the portal is tagged as [**Quick Sale**](../portals/intro.md) and can be served with a kiosk. The other condition is if the site is accessed by QR-code or not (in this case online payment and gateway information must be present in the `zoho_products` table).<br />
 Those 2 major conditions also have several ramifications, some of which include:
 
 <ul>
@@ -69,7 +73,7 @@ Those 2 major conditions also have several ramifications, some of which include:
 </ul> 
 will be detailed in the portal section.
 
-The portal UI buttons appear differently under different conditions.
+The portal UI buttons appear differently under the different conditions.
 
 ![](../../static/img/buttons.png)
 

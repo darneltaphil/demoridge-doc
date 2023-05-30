@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Interface
+# Portal Settings
 
 The Super World
 
