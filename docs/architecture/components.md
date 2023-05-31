@@ -79,7 +79,7 @@ It is important to note that the admin navbar appears with additional buttons.
 </li>
 <li>
 
-#### Portal Settings Page [(read more)](../admin-portal/settings/settings.md)
+#### Portal Settings Page [(read more)](../admin-portal/settings/portal.md)
 
 ![](../../static/img/settingsPage.png)
 

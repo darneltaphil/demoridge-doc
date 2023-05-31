@@ -4,8 +4,12 @@ sidebar_position: 3
 
 # Documents Settings
 
-The Super World
+## Interface
 
-:::info About the Admin
+![](../../../static/img/documentSettings.png)
 
-:::
+## Adding Template
+
+<ol>
+
+</ol>

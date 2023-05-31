@@ -24,7 +24,7 @@ The key parameter to note on the site setting page is **Entity**. <br/>
 <ol>
 <li>
 
-### [Portal](../settings/settings.md)
+### [Portal](../settings/portal.md)
 
 </li>
 <li>
