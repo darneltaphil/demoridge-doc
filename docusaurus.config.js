@@ -43,13 +43,13 @@ const config = {
           // Remove this to remove the "edit this page" links.
           editUrl: "https://github.com/darneltaphil/demoridge-doc",
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
-        },
+        // blog: {
+        //   showReadingTime: true,
+        //   // Please change this to your repo.
+        //   // Remove this to remove the "edit this page" links.
+        //   editUrl:
+        //     "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+        // },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -68,7 +68,7 @@ const config = {
         logo: {
           alt: "Logo",
           src: "img/nav-logo.png",
-          srcDark: "img/nav-logo.png",
+          srcDark: "img/nav-logo-dark.png",
         },
         items: [
           {

@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "not empty"
+    "description": "In this section, we discuss the technologies used to develop GovtPortal, where to get the code base and the software configurations (only) in order for the software application to run smoothly and efficiently. Failure to meet these requirements can result in installation problems or performance problems."
   }
 }
