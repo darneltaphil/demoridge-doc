@@ -2,6 +2,9 @@
 sidebar_position: 2
 ---
 
+import IconItem from "@site/src/components/IconItem.js"
+import { faPhp, faWordpress, faServicestack, faCloudflare, faExpeditedssl, faFontAwesome, faJs } from "@fortawesome/free-brands-svg-icons";
+
 # Environement Setup
 
 :::info Note
@@ -12,20 +15,38 @@ This documentation describes the installation on a local machine
 
 ### Servers
 
+<ul>
+<li>
+<IconItem  size="2x" label="Apache HTTP Server" />
+</li>
+<li>
+<IconItem icon={faPhp}  size="2x" label="PHP Programming Language" />
+</li>
+<li>
+<IconItem  size="2x" label="MySQL Database" />
+</li>
+</ul>
+
+:::tip My tip
+To get **PHP**, **Apache** and **MySql** servers, you can install _**XAMPP**_ or _**WAMP**_, whichever you feel comfortable with .
+We have several options:
+:::
+
+<ul>
+<li>XAMPP (for WINDOWS)</li>
+<li>EASYPHP</li>
+<li>AMPPS</li>
+<li>MAMP (for MAC)</li>
+</ul>
+
 When installing XAMPP server, you are recommended to leave the installation parameters as default.
 
 - [XAMPP](https://www.apachefriends.org/download.html) version 8.2.4 or above:
 
-:::tip My tip
-
-To get **PHP**, **Apache** and **MySql** servers, you can install _**XAMPP**_ or _**WAMP**_, whichever you feel comfortable with .
-
-:::
-
 #### Steps
 
 1. Create a database : You can any name for your database.
-   But we suggest `govtportal` as it this name will be used throughout the documentation.
+   But we suggest `govtportal` as this database name will be used throughout the documentation.
 
    :::info About the database
    Keep username **root** and a password **""**.

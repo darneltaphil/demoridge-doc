@@ -1,0 +1,8 @@
+{
+  "label": "Portal Setings",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "This section explains the administrative roles."
+  }
+}

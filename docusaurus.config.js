@@ -8,10 +8,10 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "GovtPortal Documentation",
   tagline: "",
-  favicon: "img/favicon.ico",
+  //favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://your-docusaurus-test-site.com",
+  url: "http://staging.ipwebsolutions.com/",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
@@ -29,7 +29,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "en",
-    locales: ["en", "fr"],
+    locales: ["en"],
   },
 
   presets: [
@@ -43,13 +43,13 @@ const config = {
           // Remove this to remove the "edit this page" links.
           editUrl: "https://github.com/darneltaphil/demoridge-doc",
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
-        },
+        // blog: {
+        //   showReadingTime: true,
+        //   // Please change this to your repo.
+        //   // Remove this to remove the "edit this page" links.
+        //   editUrl:
+        //     "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+        // },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -66,8 +66,9 @@ const config = {
       navbar: {
         title: "Home",
         logo: {
-          alt: "My Site Logo",
+          alt: "Logo",
           src: "img/nav-logo.png",
+          srcDark: "img/nav-logo-dark.png",
         },
         items: [
           {
@@ -76,12 +77,15 @@ const config = {
             position: "left",
             label: "Docs",
           },
+
           {
             href: "https://demoridge.govtportal.com/",
             label: "GovtPortal Site",
             position: "right",
+            "aria-label": "Demo Portal",
           },
         ],
+        //hideOnScroll: true,
       },
       footer: {
         style: "dark",
@@ -93,10 +97,10 @@ const config = {
                 label: "Docs",
                 to: "/docs/intro",
               },
-              {
-                label: "Privacy Policy",
-                to: "/docs/pricacy",
-              },
+              // {
+              //   label: "Privacy Policy",
+              //   to: "/docs/pricacy",
+              // },
             ],
           },
           // {
@@ -135,6 +139,11 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+        additionalLanguages: ["powershell", "php", "java"],
+      },
+      tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 5,
       },
     }),
 

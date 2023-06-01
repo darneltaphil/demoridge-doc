@@ -4,4 +4,4 @@ sidebar_position: 1
 
 # Intro
 
-![Docs Version Dropdown](../../../static/files/avolve.png)
+![](../../../static/files/avolve.png)

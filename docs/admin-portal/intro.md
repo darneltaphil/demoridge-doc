@@ -6,6 +6,10 @@ sidebar_position: 1
 
 The Super World
 
-:::info About the Admin
-
+:::info About this section
+The clerk and director roles are discussed here
 :::
+
+## The users
+
+The admin site is used by clerks, directors and super admins.
