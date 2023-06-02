@@ -5,7 +5,7 @@ sidebar_position: 2
 import IconItem from "@site/src/components/IconItem.js"
 import { faPhp, faWordpress, faServicestack, faCloudflare, faExpeditedssl, faFontAwesome, faJs } from "@fortawesome/free-brands-svg-icons";
 
-# Environement Setup
+# Environment Setup
 
 :::info Note
 This documentation describes the installation on a local machine
@@ -65,5 +65,3 @@ Install Wordpress ([tutorial](https://wordpress.org/documentation/)) and activat
 You can use any IDE of your choice.
 
 - [IDE - VSCode](https://code.visualstudio.com/download) version 1.78 or above:
-
-## Remote Server Setup

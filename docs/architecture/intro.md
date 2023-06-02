@@ -30,14 +30,14 @@ Each child site represents a website deployed for a client.
 
 ## Child Website
 
-A child site has a defined number of portals (based on the services the site is going offer). The site can be accessed via **WEB** or via **KIOSK**. A clerk or a director, assigned that site can log in. the director has the administrative power and permission to set he site's parameters. <br/>
+A child site has a defined number of portals (based on the services the site is going to offer). The site can be accessed via **WEB** or via **KIOSK**. A clerk or a director, assigned to that site can log in. The director has the administrative power and permission to set the site's parameters. <br/>
 
 :::success
 All the data related to a single site are identified in the database by its `entity` name
 :::
 ![](../../static/img/child_site.png)
 
-### What is going on here?
+### What is going on here too?
 
 #### The database [`govtportal`](./database)
 

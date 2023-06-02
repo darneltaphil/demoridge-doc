@@ -8,7 +8,7 @@ sidebar_position: 3
 This sections seeks to expose and explain some key functions of this application, with code snippets attached
 :::
 
-## The bigger Picture
+## The bigger picture
 
 In a bigger picture, GovtPortal's function is summarized to this image below.
 
